@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<main id="main-doc">
+  <section class="main-section" id="">
+    <header  id="TTMS">LoginSystem (TTMS0900)</header>
+    <hr>
+    <hr>
+    
+    <header>Johdanto</header>
+    <article>  
+      <p>Web-palvelinohjelmoinnin (TTMS0900) harjoitustyöksi valikoitui "kirjatumispalvelu", jossa voidaan luoda käyttäjätunnukset ja tämän jälkeen kirjatuminen on mahdollista joko sähköposti/salasana tai käyttäjänimi/salasana yhdistelmää 
+ hyödyksi käyttäen.</p>
+<p>Tekijä: Joni Kananen </p>
+<hr>
+      </artice>
+    </section>
+  <section class="main-section" id="">
+    <header>Ajatus harjoitustyöstä</header>
+    <article>
+      <p>Tarkoituksena on luoda täysin toimiva kirjautumispalvelu, jossa on otettu huomioon mahdolliset virhetilanteet. Tarkoituksena on myös, että harjoitustyössä otettaisiin huomioon tietoturvallisia riskejä ja niiden estämistä. Koska tietokantaan pitää tallentaa käyttäjän luoma salasana, joudumme totta kai "hashaamaan" sen, että se olisi mahdollisimman vaikea arvata mahdollisen hakkerin iskiessä.</p>
+      <img id="mockup1" src="mockup.png" alt="Mockup palvelusta">
+      <img id="mockup2" src="mockup2.png" alt="Mockup palvelusta">
+      <p>*Harjoitustyön mockup</p>
+<hr>
+      </artice>
+    </section>
+
+  <section class="main-section" id="">
+    <header>Harjoitustyön tekoa</header>
+    <article>
+      <p>Harjoitustyön ollessa kirjatumispalvelu, joudumme totta kai luomaan tietokannan johon voimme tallentaa käyttäjän luoman datan. Tietokanta luodaan paikallisesti tietokoneelle, eikä esim. MYSQL Workbench-ohjelmaa käyttäen. Päädyin harjoitustyössä käyttämään perinteisen MYSQL:n sijaan sen "uudempaa" versiota eli MYSQLi:ä. </p>
+              <p>Koska harjoitustyö tarvitsee tietokannan, loin hyvin simppelin jossa on vain kaikki tarpeellinen.
+              Tietokanta pitää sisällään seuraavat asiat: käyttäjäId, käyttäjänimi, sähköposti ja salasana.</p>
+
+              <!--Kuva on otettu Lightshot-nimisellä sovelluksella ja  ladattu heidän omille sivuilleen nettiin. Tästä syystä URL on järkyttävän näköinen. Yritin lyhentää URL:a bitlyllä, mutta
+             tällöin html ei tunnistanut sitä enään.  -->   
+      <img src="data:image/png;base64,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" alt"database">
+      <p>*Yläpuolella näkyvä kuva näyttää, kuinka tietokanta on luotu komentorivillä.</p>
+    </article>
+    </section>
+  <hr>
+  <section class="main-section" id="">
+    <header>Tietoa ominaisuuksista</header>
+    <article> 
+ <p>Tässä hieman avattuna mitä mahdollisia virheitä on otettu huomioon käyttäjän luodessa tunnuksia tai yrittäessään kirjautua palveluun.</p>
+<li>Käyttäjä ei täytä kaikkia tarvittavia tietoja.<strong>Kerrotaan, että virhe tapahtui ja pyydetään täyttämään kaikki kentät.</strong></li>
+                  <li>Käyttäjä ei luo oikeassa muodossa olevaa sähköpostia. <strong>Kerrotaan, että vääränlainen sähköposti.</strong></li>
+                     <li>Käyttäjä tekee näppäilyvirheen pyydettäessä toistamaan salasana uudelleen. <strong>Kerrotaan, että ensimmäinen ja toinen salasana eivät olleet samat.</strong></li>
+       <li>Käyttäjä yrittää kirjautua palveluun, mutta sähköpösti/käyttäjänimi eivät vastaa tietokannasta löytyviin tietoihin.<strong>Varsinaisesti mitään ei tapahdu, mutta ilmoitamme käyttäjälle URL-palkissa, että antamasi tieto ei ollut oikea (php?error=wronguidpwd).</strong></li>
+                <li>Käyttäjä yrittää kirjautua palveluun, mutta salasana ei vastaa tietokannasta löytyvään tietoon.<strong>Varsinaisesti mitään ei tapahdu, mutta ilmoitamme käyttäjälle URL-palkissa, että antamasi tieto ei ollut oikea (php?error=wronguidpwd).</strong></li>
+
+             <!--Kuva on otettu Lightshot-nimisellä sovelluksella ja  ladattu heidän omille sivuilleen nettiin. Tästä syystä URL on järkyttävän näköinen. Yritin lyhentää URL:a bitlyllä, mutta
+             tällöin html ei tunnistanut sitä enään.  -->   
+      <img src="data:image/png;base64,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" alt="logginFailed">
+      <p>*Kuva kertoo mitä URL:ssa näytetään pieleen menneen kirjautumisen jälkeen.</p>
+    </article>
+    </section>
+  <hr>
+    <section class="main-section" id="">
+    <header>Miten se toimii..?</header>
+    <article>
+    <p>Alussa käyttäjällä ei ole mitään tunnuksia palveluun. Tällöin joudumme luomaan
+    uudet tunnukset. Lomake löytyy signup.php:sta, jossa myös annamme virhe-viestit jos kohtia ei ole täytetty asianmukaisesti.Suurin taika kuitenki tapahtuu signup.inc.php:ssa. Aluksi liitämme mukaan SQL-yhteyden sisältävän scriptin: require 'dbh.inc.php', jotta voimmme käyttää sitä myöhemmin. Signup.inc.php:ssa haemme kaiken datan, jota käyttäjä on asettanut lomakkeella ja tarkastelemme, että kaikki on täytetty oikein. Tarkastamme tietokannasta, että sieltä ei löydy vastaavia käyttäjänimiä. Jos vastaavia ei löydy pääsemme lähettäämän datan tietokantaan, jonka jälkeen asetamme lomakkeisiin placeholderit.Onnittelut, loit juuri uuden käyttäjän.</p>
+    <p>Loit juuri uuden käyttäjän. Nyt voit kirjautua palveluun luomillasi tunnuksilla. Voit kirjautua palveluun joko käyttäjänimi/salasana- tai sähköposti/salasana-yhdistelmällä.Tarkastellaan hieman login.inc.php kohtaa. Alussa otamme taas SQL-yhteyden sisältän scriptin mukaan, jotta voimme käyttää sitä myöhemmin. Tarkastamme, että lomake ei ole tyhjä, ja jos on niin annamme URL:ssa error-viestin. Jos kaikki oli niin, kuin pitääkin, voimme luoda yhteyden tietokantaan. Alustamme statementin, käytämme SQL-yhteyttä ja tarkastamme ettei löydy erroreita. Virheitä ei löydy ja pääsemme jatkamaan.Bindataan data, suoritetaan prepared-statement ja lähetetään se tietokantaan. Saamme vastauksen takaisin. Tallennamme saadun tiedon mysqli_fetch_assoc-muuttujaan. Tämän jälkeen pääsemme vertailemaan salasanoja, että tietokannoissa oleva vastaa kirjautujan asettamaan. Salasanojen ollessa samat, alustamme session_start:n,
+    luomme Session-muuttujat ja asetamme datan näihin. Tämän jälkeen web-sivu rekisteröi käyttäjän kirjautuneena sisään.</p>
+    </article>
+  </section>
+<hr>
+  <section class="main-section" id="">
+    <header>Harjoitustyön kehittäminen</header>
+    <article>
+    <p>
+<p>Harjoitustyö jäi vajaaksi siitä mitä olin alun perin ajatellut, mutta syy tähän on vain se, että en kerennyt saamaan web-ohjelmoinnin harjoitustyötä tarpeeksi pitkälle, jotta sen liittäminen olisi ollut järkevää.</p>
+                <p>Kirjautumispalvelua tai ns. "loginSysteemiä" voisi kehittää vielä pidemmälle. Siihen voisi mm. lisätä muitakin ehtoja, mm. mitä ja miten tarkastellaan kirjautumista. Siitä voisi myös saada hyvän pohjan
+                muihin harjoituksiin/projekteihin, kun kerran tilin luonti ja kirjautuminen on jo hoidettu alta pois.</p>
+                <p>Todennäköisesti tulen jatkamaan loginSysteemin parissa jatkossa omalla ajallani ja pyrin jalostamaan siitä paremman.</p>
+                <p>Sovellusta on myös helppo jatkaa muissa projekteissa ja ulkoasua voisi aina muuttaa vain tarpeiden mukaan.</p>
+    </article>
+  </section>
+<hr>
+  <section class="main-section" id="">
+    <header>Harjoitustyön arvio</header>
+    <article>
+ <p>Ehdotan annettavaksi harjoitustyöstä arvosanaksi numeron 1. Harjoitustyö ei ollut kovin "laaja", mutta itselle siinä oli äkkiseltään tarpeeksi haastetta ja sovellus on toimiva. Pienillä korjauksilla/parannuksilla
+                saisi siitä vielä paremman. Aikaa harjoitustyöhön meni ~40-50h. Ehdottomasti eniten aikaa meni MYSQLi:n syntaksin kanssa säätäessä.</p>
+    </article>
+</section
+<footer>
+  <span>&copy;Joni Kananen, L7043</span>
+</footer>
+
+</body>
+</html>
